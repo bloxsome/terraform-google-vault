@@ -51,6 +51,7 @@ resource "google_storage_bucket_iam_member" "member" {
   bucket = google_storage_bucket.vault.name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.vault.email}"
+  location = "US"
 }
 
 # Create a KMS key ring
