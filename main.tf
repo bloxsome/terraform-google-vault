@@ -45,13 +45,13 @@ resource "google_storage_bucket" "vault" {
   name          = local.vault_storage_bucket_name
   project       = var.project
   force_destroy = var.bucket_force_destroy
+  location      = var.location
 }
 
 resource "google_storage_bucket_iam_member" "member" {
   bucket = google_storage_bucket.vault.name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.vault.email}"
-  location = "US"
 }
 
 # Create a KMS key ring
